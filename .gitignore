@@ -2,5 +2,4 @@
 data/
 __pycache__/
 mlruns/
-*.pkl
 Cricket_Data_Analysis/
