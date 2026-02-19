@@ -11,10 +11,12 @@ st.title("💰 SmartPremium: Insurance Cost Predictor")
 st.write("Enter the customer's details below. Our Machine Learning model will predict their annual insurance premium in real-time.")
 
 # --- Load the Model ---
-model_path = 'smartpremium_model.pkl'
+# This line finds the folder where app.py lives
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, 'smartpremium_model.pkl')
 
 if not os.path.exists(model_path):
-    st.error("Model file not found! Please wait for pipeline.py to finish saving 'smartpremium_model.pkl'.")
+    st.error(f"Model file not found at {model_path}! Please ensure the .pkl file is in the same folder as app.py.")
     st.stop()
 
 @st.cache_resource
@@ -22,7 +24,6 @@ def load_model():
     return joblib.load(model_path)
 
 model = load_model()
-
 # --- User Input Layout ---
 st.markdown("### 🧑 Customer Demographics")
 col1, col2, col3 = st.columns(3)
